@@ -6,6 +6,7 @@ How to add this library to your project:
 - Gradle
 
 Step 1. Add the JitPack in your root build.gradle at the end of repositories:
+
 	allprojects {
 		repositories {
 			...
@@ -14,6 +15,7 @@ Step 1. Add the JitPack in your root build.gradle at the end of repositories:
 	}
   
 Step 2. Add the dependency
+
 	dependencies {
 	        implementation 'com.github.gmarmari:MarLib:v1.0'
 	}
@@ -21,6 +23,7 @@ Step 2. Add the dependency
 - Maven
 
 Step 1. Add the JitPack repository to your build file
+
 <repositories>
 		<repository>
 		    <id>jitpack.io</id>
@@ -29,6 +32,7 @@ Step 1. Add the JitPack repository to your build file
 	</repositories>
   
 Step 2. Add the dependency
+
 	<dependency>
 	    <groupId>com.github.gmarmari</groupId>
 	    <artifactId>MarLib</artifactId>
