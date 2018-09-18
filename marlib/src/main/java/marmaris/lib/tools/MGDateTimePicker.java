@@ -55,17 +55,21 @@ public class MGDateTimePicker extends Dialog{
 
         myDatePicker =  findViewById(R.id.my_date_picker);
         myTimePicker =  findViewById(R.id.my_time_picker);
-        if (dateType == DateType.ONLY_DATE) {
-            myDatePicker.setVisibility(View.VISIBLE);
-            myTimePicker.setVisibility(View.GONE);
-        }else if(dateType == DateType.ONLY_TIME){
-            myDatePicker.setVisibility(View.GONE);
-            myTimePicker.setVisibility(View.VISIBLE);
-            myTimePicker.setIs24HourView(true);
-        }else{
-            myDatePicker.setVisibility(View.VISIBLE);
-            myTimePicker.setVisibility(View.VISIBLE);
-            myTimePicker.setIs24HourView(true);
+        switch (dateType) {
+            case ONLY_DATE:
+                myDatePicker.setVisibility(View.VISIBLE);
+                myTimePicker.setVisibility(View.GONE);
+                break;
+            case ONLY_TIME:
+                myDatePicker.setVisibility(View.GONE);
+                myTimePicker.setVisibility(View.VISIBLE);
+                myTimePicker.setIs24HourView(true);
+                break;
+            default:
+                myDatePicker.setVisibility(View.VISIBLE);
+                myTimePicker.setVisibility(View.VISIBLE);
+                myTimePicker.setIs24HourView(true);
+                break;
         }
 
         Calendar calendar = Calendar.getInstance();
