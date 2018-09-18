@@ -4,9 +4,8 @@ A library project with some tools that I use them on all projects, like alert di
 How to add this library to your project:
 
 - Gradle
-Add it in your root build.gradle at the end of repositories:
 
-Step 1. Add the JitPack repository to your build file
+Step 1. Add the JitPack in your root build.gradle at the end of repositories:
 	allprojects {
 		repositories {
 			...
