@@ -21,7 +21,7 @@ public class MGKeyboard {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            MGLogger.appendLog(context, e);
+            MGLogger.appendLog(context, MGKeyboard.class.toString(), e);
         }
 
     }

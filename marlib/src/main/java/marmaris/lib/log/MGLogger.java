@@ -1,6 +1,7 @@
 package marmaris.lib.log;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.io.File;
@@ -22,37 +23,37 @@ public class MGLogger {
     /**
      * Writes a message to the log file
      * @param c : Context
+     * @param TAG : a tag for the log, usually a class name
      * @param msg : the message
      * @param level : the Level of the log, see {@link MGLoggerLevel}
      */
-    public static void appendLog(Context c, String msg, MGLoggerLevel level) {
-        if(c == null || msg == null || msg.isEmpty())
-            return;
-
-        setUp(c);
-        writeLog(c.getClass().toString(), msg, level);
+    public static void appendLog(@NonNull Context c, String TAG, @NonNull String msg, MGLoggerLevel level) {
+        if (TAG == null)
+            TAG = c.getClass().toString();
+        setUp(c, TAG);
+        writeLog(TAG, msg, level);
     }
 
     /**
      * Write an exception to the log file
      * @param c : Context
+     * @param TAG : a tag for the log, usually a class name
      * @param e : the Exception
      */
-    public static void appendLog(Context c,Exception e) {
-        if(c == null || e == null)
-            return;
-
-        setUp(c);
-        writeLog(c.getClass().toString(), getExceptionString(e), MGLoggerLevel.Error);
+    public static void appendLog(@NonNull Context c, String TAG, @NonNull Exception e) {
+        if (TAG == null)
+            TAG = c.getClass().toString();
+        setUp(c, TAG);
+        writeLog(TAG, getExceptionString(e), MGLoggerLevel.Error);
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    private static void setUp(Context c) {
+    private static void setUp(Context c, String TAG) {
         if (mLogger != null)
             return;
 
         try {
-            mLogger = Logger.getLogger(c.getClass().toString());
+            mLogger = Logger.getLogger(TAG);
             File mFile = new File(MGFileManager.getExternalFilesFolder(c, "marmaris.lib"));
             mFile.mkdirs();
             FileHandler mFileHandler = new FileHandler(mFile.getPath()+File.separator+"Logging.html");
@@ -61,7 +62,7 @@ public class MGLogger {
             mLogger.addHandler(mFileHandler);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e(c.getClass().toString(), e.toString());
+            Log.e(TAG, e.toString());
         }
     }
 

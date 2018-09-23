@@ -58,7 +58,7 @@ public class MGFileManager {
                 availableSize = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
         } catch (Exception e) {
             e.printStackTrace();
-            MGLogger.appendLog(c, e);
+            MGLogger.appendLog(c, MGFileManager.class.toString(), e);
         }
         return availableSize;
     }
